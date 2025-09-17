@@ -14,27 +14,22 @@ public class CartServlet extends HttpServlet {
 
         ServletContext sc = getServletContext();
 
-        // get current action
         String action = request.getParameter("action");
         if (action == null) {
-            action = "cart";  // default action
+            action = "cart"; 
         }
 
-        // perform action and set URL to appropriate page
         String url = "/index.jsp";
 
         if (action.equals("shop")) {
             HttpSession session = request.getSession();
 
-            // Kiểm tra có phải quay về từ checkout hay không
             String fromCheckout = request.getParameter("fromCheckout");
             if ("true".equals(fromCheckout)) {
-                session.removeAttribute("cart"); // chỉ reset khi từ checkout
+                session.removeAttribute("cart");
             }
 
             url = "/index.jsp";
-
-
 
         } else if (action.equals("cart")) {
             String productCode = request.getParameter("productCode");
@@ -63,10 +58,8 @@ public class CartServlet extends HttpServlet {
 
             String source = request.getParameter("source");
             if ("index".equals(source)) {
-                // Add từ trang shop -> cộng dồn
                 cart.addItem(lineItem);
             } else {
-                // Update từ cart.jsp -> ghi đè hoặc xóa
                 if (quantity > 0) {
                     cart.updateItem(lineItem);
                 } else {
@@ -85,3 +78,4 @@ public class CartServlet extends HttpServlet {
                 .forward(request, response);
     }
 }
+
