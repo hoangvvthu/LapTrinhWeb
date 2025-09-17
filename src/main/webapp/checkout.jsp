@@ -7,11 +7,10 @@
 </head>
 <body>
 <h1>Checkout</h1>
-
 <p>Your order has been placed successfully!</p>
-
 <form action="cart" method="post">
     <input type="hidden" name="action" value="shop">
+    <input type="hidden" name="fromCheckout" value="true"> <!-- 👈 thêm dòng này -->
     <input type="submit" value="Return to Shop">
 </form>
 </body>

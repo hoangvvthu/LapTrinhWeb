@@ -3,15 +3,13 @@ package murach.cart;
 import java.io.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
-
 import murach.data.*;
 import murach.business.*;
 
 public class CartServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest request,
-                          HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         ServletContext sc = getServletContext();
@@ -21,12 +19,24 @@ public class CartServlet extends HttpServlet {
         if (action == null) {
             action = "cart";  // default action
         }
+
         // perform action and set URL to appropriate page
         String url = "/index.jsp";
+
         if (action.equals("shop")) {
-            url = "/index.jsp";    // the "index" page
-        }
-        else if (action.equals("cart")) {
+            HttpSession session = request.getSession();
+
+            // Kiểm tra có phải quay về từ checkout hay không
+            String fromCheckout = request.getParameter("fromCheckout");
+            if ("true".equals(fromCheckout)) {
+                session.removeAttribute("cart"); // chỉ reset khi từ checkout
+            }
+
+            url = "/index.jsp";
+
+
+
+        } else if (action.equals("cart")) {
             String productCode = request.getParameter("productCode");
             String quantityString = request.getParameter("quantity");
 
@@ -51,14 +61,12 @@ public class CartServlet extends HttpServlet {
             lineItem.setProduct(product);
             lineItem.setQuantity(quantity);
 
-            // phân biệt Add vs Update
-            String source = request.getParameter("source"); // 👈 thêm hidden field để biết đến từ đâu
-
+            String source = request.getParameter("source");
             if ("index".equals(source)) {
-                // Thêm từ trang shop → cộng dồn
+                // Add từ trang shop -> cộng dồn
                 cart.addItem(lineItem);
             } else {
-                // Update từ cart.jsp
+                // Update từ cart.jsp -> ghi đè hoặc xóa
                 if (quantity > 0) {
                     cart.updateItem(lineItem);
                 } else {
@@ -68,8 +76,8 @@ public class CartServlet extends HttpServlet {
 
             session.setAttribute("cart", cart);
             url = "/cart.jsp";
-        }
-        else if (action.equals("checkout")) {
+
+        } else if (action.equals("checkout")) {
             url = "/checkout.jsp";
         }
 
