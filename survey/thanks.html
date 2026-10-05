@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Murach's Survey</title>
+    <link rel="stylesheet" href="main.css" type="text/css"/>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <img src="murachlogo.png" alt="Murach Logo" style="height:100px;">
+        </header>
+        
+        <h2>Thank you for completing our survey!</h2>
+        <p>
+            We truly appreciate the time you've taken to share your thoughts.<br>
+            Here is the information you provided:
+        </p>
+
+        <div class="info-row"><div class="info-label">Email:</div>
+            <div class="info-value" id="email"></div></div>
+
+        <div class="info-row"><div class="info-label">First Name:</div>
+            <div class="info-value" id="firstName"></div></div>
+
+        <div class="info-row"><div class="info-label">Last Name:</div>
+            <div class="info-value" id="lastName"></div></div>
+
+        <div class="info-row"><div class="info-label">Date of Birth:</div>
+            <div class="info-value" id="dateOfBirth"></div></div>
+
+        <div class="info-row"><div class="info-label">How did you hear about us?</div>
+            <div class="info-value" id="hearAbout"></div></div>
+
+        <div class="info-row"><div class="info-label">Announcements (offers):</div>
+            <div class="info-value" id="announceOffers"></div></div>
+
+        <div class="info-row"><div class="info-label">Announcements (email):</div>
+            <div class="info-value" id="announceEmails"></div></div>
+
+        <div class="info-row"><div class="info-label">Preferred Contact:</div>
+            <div class="info-value" id="contactMethod"></div></div>
+
+        <p>
+            Once again, thank you for your valuable input.<br>
+            Please visit us again soon to stay updated on our latest products and special offers!
+        </p>
+
+        <form action="index.html" method="get">
+            <input type="submit" value="Return" id="submit">
+        </form>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+
+        document.getElementById("email").textContent = params.get("email") || "";
+        document.getElementById("firstName").textContent = params.get("firstName") || "";
+        document.getElementById("lastName").textContent = params.get("lastName") || "";
+        document.getElementById("dateOfBirth").textContent = params.get("dateOfBirth") || "";
+        document.getElementById("hearAbout").textContent = params.get("hearAbout") || "";
+        document.getElementById("announceOffers").textContent = params.get("announceOffers") ? "Yes" : "No";
+        document.getElementById("announceEmails").textContent = params.get("announceEmails") ? "Yes" : "No";
+        document.getElementById("contactMethod").textContent = params.get("contactMethod") || "";
+    </script>
+</body>
+</html>
