@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Murach's Java Servlets and JSP</title>
+    <link rel="stylesheet" href="main.css" type="text/css"/>
+</head>
+
+<body>
+    <h1>Thanks for joining our email list</h1>
+
+    <p>Here is the information that you entered:</p>
+
+    <label>Email:</label>
+    <span id="email"></span><br>
+
+    <label>First Name:</label>
+    <span id="firstName"></span><br>
+
+    <label>Last Name:</label>
+    <span id="lastName"></span><br>
+
+    <p>To enter another email address, click on the Back 
+    button in your browser or the Return button shown 
+    below.</p>
+
+    <form action="index.html" method="get">
+        <input type="submit" value="Return">
+    </form>
+
+    <script>
+        // Lấy dữ liệu từ query string
+        const params = new URLSearchParams(window.location.search);
+        document.getElementById("email").textContent = params.get("email") || "";
+        document.getElementById("firstName").textContent = params.get("firstName") || "";
+        document.getElementById("lastName").textContent = params.get("lastName") || "";
+    </script>
+</body>
+</html>
