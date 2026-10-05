@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 20px;
+    color: #000;
+}
+
+h1 {
+    font-size: 1.5em;
+    color: teal;
+    margin-bottom: 15px;
+}
+
+h2 {
+    font-size: 1.2em;
+    color: teal;
+    margin-bottom: 10px;
+}
+
+a {
+    color: #0000cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+p {
+    margin: 10px 0;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    margin-top: 8px;
+}
+
+input[type="text"],
+input[type="email"] {
+    width: 200px;
+    padding: 5px;
+    margin-top: 5px;
+}
+
+input[type="submit"] {
+    padding: 5px 15px;
+    margin-top: 10px;
+}
+
+.pad_top {
+    margin-top: 10px;
+    display: inline-block;
+}
+
+.margin_left {
+    margin-left: 105px;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+table, th, td {
+    border: 1px solid #999;
+}
+
+th, td {
+    padding: 8px 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
